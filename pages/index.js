@@ -1,6 +1,21 @@
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import NoSSR from 'react-no-ssr'
 
-export default function Home() {
+const Index = () => {
+
+  const [currentDate, setCurrentDate] = useState(new Date())
+
+  useEffect(() => {
+    const currentDateInterval = setInterval(() => {
+      setCurrentDate(new Date())
+    }, 1000)
+
+    return () => {
+      clearInterval(currentDateInterval)
+    }
+  }, [])
+
   return (
     <div className="container">
       <Head>
@@ -49,14 +64,9 @@ export default function Home() {
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
+        <NoSSR>
+          { currentDate.toISOString() }
+        </NoSSR>
       </footer>
 
       <style jsx>{`
@@ -207,3 +217,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Index
