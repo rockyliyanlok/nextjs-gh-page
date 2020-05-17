@@ -3,7 +3,6 @@ import Head from 'next/head'
 import NoSSR from 'react-no-ssr'
 
 const Index = () => {
-
   const [currentDate, setCurrentDate] = useState(new Date())
 
   useEffect(() => {
