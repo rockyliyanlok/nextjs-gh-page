@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import getConfig from 'next/config'
 import Head from 'next/head'
 import NoSSR from 'react-no-ssr'
 
+const { publicRuntimeConfig } = getConfig()
+
 const Index = () => {
-  const [currentDate, setCurrentDate] = useState(new Date())
-
-  useEffect(() => {
-    const currentDateInterval = setInterval(() => {
-      setCurrentDate(new Date())
-    }, 1000)
-
-    return () => {
-      clearInterval(currentDateInterval)
-    }
-  }, [])
+  const [currentDate] = useState(new Date())
+  console.log('Index::()', { publicRuntimeConfig })
 
   return (
     <div className="container">
